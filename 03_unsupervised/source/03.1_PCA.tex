@@ -25,18 +25,41 @@
 
 \section*{Principal Component Analysis.} 
 
+
+
+
 Linear algebra is one of the great superpowers! A lot of what we do in
 data science, indeed, a lot of mathematical modelling is either a
 direct example of linear algebra, or, something more complicated we
 manage to solve because we can break it up into bits that look like
-linear algebra.
+linear algebra. Linear algebra isn't difficult, at the start it just
+looks like a clever way to organise some complicated calculations, you
+might say that mathematics is always just a clever way to organise
+some calculations. There is, however, a deep idea that emerges in
+linear algebra which we will touch on here and exploit: matrices can
+be thought of in terms of their components or in terms of their
+eigenvectors and eigenvalues, what is sometimes called their
+\emph{spectral content}; we will use this to find diagonal structures
+in the matrices which we can use to find structure in data.
 
 In this section we are going to look at principal component analysis
-(PCA). We have a few reasons to do this; it is a useful example of
-unsupervised learning, it reminds us a bit about linear algebra and it
-teaches us a bit about how to think about data. In fact, we won't go
-into this, but many interesting aspects of neural networks are likely
-understandable as non-linear generalizations of PCA!
+(PCA). You will actually encounter PCA twice, in this unit and when
+you are learning about visualization. This reflects the importance of
+PCA, from a visualization point-of-view because it is often the first
+step in any examination of data and from a AI point-of-view because it
+is an early demonstration of the idea that data usually has a
+structure and this is why AI works as well as it does! PCA is an
+unsupervised technique but a good supervised learning algorithm will
+always have a hidden unsupervised aspect, it discovers the structure
+of data on the way to learning how you want it classified. As well as
+being useful example of unsupervised learning, it reminds us a bit
+about linear algebra and it teaches us a bit about how to think about
+data. However, although we won't go into this explicitly, keep in mind
+that many interesting aspects of neural networks are understandable as
+non-linear generalizations of PCA! Anyway, I hope you won't mind this
+small piece of repetition between units, it is worth doing twice and I
+am sure it will be done with different emphasis in both cases, I am
+sure the other lecturer will also show more skill in teaching the material!
 
 The first thing is \textsl{unsupervised learning}; by unsupervised
 learning we mean, broadly, we don't start with a set of data points
@@ -631,6 +654,55 @@ mathematics in an exact way, which is useful and good for mathematics,
 but not for communicating mathematics where stopping all the time to
 give definitions can make things very dry and boring to read.
 
+The symbol $\delta_{ij}$ is the \emph{Kronecker delta}:
+\begin{equation}
+\delta_{ij} =
+\begin{cases}
+1 & \text{if } i = j, \\
+0 & \text{if } i \ne j .
+\end{cases}
+\end{equation}
+
+The \emph{covariance matrix}, if $\mathbf{X}=(X_1,X_2,\ldots,X_n)^{\mathsf T}$ is a vector of random variables
+\begin{equation}
+\Sigma
+= \operatorname{Cov}(\mathbf{X})
+= \mathbb{E}\!\left[(\mathbf{X}-\boldsymbol{\mu})(\mathbf{X}-\boldsymbol{\mu})^\top\right],
+\qquad
+\mu_i = \mathbb{E}[X_i].
+\end{equation}
+or, component-wise
+\begin{equation} 
+\Sigma_{ij} = \operatorname{Cov}(X_i,X_j)
+= \mathbb{E}\!\left[(X_i-\mu_i)(X_j-\mu_j)\right].
+\end{equation}
+The \emph{correlation matrix} is a \emph{whitened} version of this:
+\begin{equation}
+\sigma_i^2 = \operatorname{Var}(X_i) = \Sigma_{ii},
+\qquad
+\sigma_i = \sqrt{\Sigma_{ii}}.
+\end{equation}
+and let
+\begin{equation}
+  D = \operatorname{diag}(\sigma_1,\dots,\sigma_n).
+\end{equation}
+then
+\begin{equation}
+R = D^{-1}\Sigma D^{-1}.
+\end{equation}
+or component-wise
+\begin{equation}
+R_{ij}
+= \frac{\operatorname{Cov}(X_i,X_j)}{\sigma_i\,\sigma_j}
+= \frac{\Sigma_{ij}}{\sqrt{\Sigma_{ii}\Sigma_{jj}}}.
+\end{equation}
+When you are doing PCA you should use the covariance if that units are
+the same for all the dimensions and the data variance is somehow
+comparable, and correlation otherwise. The election data is a sort of
+edge case, the correlation matrix produces better results because some
+of the parties have a much bigger vote than others, there is also a
+technical complication related to the entries in the data vector
+always adding up to one.
 
 
 \end{document}
