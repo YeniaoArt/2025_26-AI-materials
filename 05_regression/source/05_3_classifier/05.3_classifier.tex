@@ -8,8 +8,8 @@
 \usepackage{fancyhdr}
 \usepackage{bm}
 \pagestyle{fancy}
-\lfoot{\texttt{ematm0067.github.io} / \texttt{ematm0044.github.io}}
-\lhead{Introduction to AI - 02.5\_classifier - Conor}
+\lfoot{\texttt{ematm0067.github.io}}
+\lhead{Introduction to AI - 05.3\_classifier - Conor}
 \rhead{\thepage}
 \cfoot{}
 
@@ -30,19 +30,22 @@ logistic regression we described in the previous section; instead it
 presents the same mathematics from a slightly different
 perspective. In the logistic regression example we started with a
 one-dimensional example, here we will look at another example, but
-this time a higher dimensional one, based on data from Irish elections.
+this time a higher dimensional one, based on data from Irish
+elections.
 
-Elections in Ireland use an elegant voting system called Single
-Transferable Vote that allows for constituency-based proportional
-voting. There are multi-seat constituencies and votes transfer as
-candidates are elected or eliminated, so it is a simplification to
-reduce the votes to the proportion for each party. However, for our
-purposes here this is what we have done. Based on the 2020
+As described previously, elections in Ireland use an elegant voting
+system called Single Transferable Vote that allows for
+constituency-based proportional voting. There are multi-seat
+constituencies and votes transfer as candidates are elected or
+eliminated, so it is a simplification to reduce the votes to the
+proportion for each party. However, for our purposes here this is what
+we have done. Based on the 2020
 election\footnote{data.gov.ie/dataset/candidate-details-for-general-election-2020}
 this figure show the fraction of `first preference' vote for two of
-the main parties, Fianna F\'{a}il and Fine Gael, for all 39 constituencies.
+the main parties, Fianna F\'{a}il and Fine Gael, for all 39
+constituencies.
 \begin{center}
-  \includegraphics[]{02.5_ffVfg.png}
+  \includegraphics[]{05_3_ffVfg.png}
 \end{center}
 The constituencies have been labelled `urban', `mixed' and `rural' and
 this has been marked by colour. Don't take these labels too seriously;
@@ -95,12 +98,12 @@ less than 0.5.
 
 We can plot that line
 \begin{center}
-  \includegraphics[]{02.5_ffVfg_linear.png}
+  \includegraphics[]{05_3_ffVfg_linear.png}
 \end{center}
 We can see it has done ok, it isn't perfect, but then no line is going
 to be. We can look at the assigned probability using a heatmap
 \begin{center}
-  \includegraphics[]{02.5_ffVfg_heatmap.png}
+  \includegraphics[]{05_3_ffVfg_heatmap.png}
 \end{center}
 Clearly, it is has fitted the points as best as it can using a linear
 classifier and this gives a useful model of settlement type, but a
@@ -114,7 +117,7 @@ Recession it lost support, particularly to Sinn F\'{e}in in urban
 areas; however, Sinn F\'{e}in also has rural support so including it
 isn't much better
 \begin{center}
-  \includegraphics[]{02.5_ffVsf.png}
+  \includegraphics[]{05_3_ffVsf.png}
 \end{center}
 There are lots of other parties we could consider, the left-wing and
 social democratic parties like The Labour Party, The Green Party,
